@@ -1,0 +1,37 @@
+You are given two strings word1 and word2. Merge the strings by adding letters in alternating order, starting with word1. If a string is longer than the other, append the additional letters onto the end of the merged string.
+Return the merged string.
+Example 1:
+Input: word1 = "abc", word2 = "pqr"
+Output: "apbqcr"
+Explanation: The merged string will be merged as so:
+word1:  a   b   c
+word2:    p   q   r
+merged: a p b q c r
+
+Code:
+class Solution {
+    public String mergeAlternately(String word1, String word2) {
+        StringBuilder mergedString = new StringBuilder();
+        int length1 = word1.length();
+        int length2 = word2.length();
+        int minLength = Math.min(length1, length2);
+        for (int i = 0; i < minLength; i++) {
+            mergedString.append(word1.charAt(i)).append(word2.charAt(i));
+        }
+        // Append the remaining characters from the longer string, if any
+        if (length1 > minLength) {
+            mergedString.append(word1.substring(minLength));
+        }
+        if (length2 > minLength) {
+            mergedString.append(word2.substring(minLength));
+        }
+        return mergedString.toString();
+    }
+}
+
+Explain:
+
+The mergeStrings method takes two strings, word1 and word2, and merges them according to the pattern.
+It iterates through both strings simultaneously, appending characters alternately until the end of the shorter string.
+After the loop, it appends any remaining characters from the longer strings.
+The main method demonstrates how to use the mergeStrings method with a sample input and prints the merged string
